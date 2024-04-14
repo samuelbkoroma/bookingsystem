@@ -1,0 +1,39 @@
+.form {
+  margin-top: 100px;
+  box-shadow: -2px -2px 38px -6px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  padding: 20px;
+  text-align: center;
+}
+
+label {
+  text-align: left;
+}
+
+.login-btn {
+  width: 80%;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.signup-link {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.register-link {
+  color: rgb(28, 28, 28);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.google-btn {
+  width: 40%;
+  padding: 20px;
+  border-radius: 15px;
+}
