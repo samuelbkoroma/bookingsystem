@@ -2,28 +2,30 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firestore";
-
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Table from "./Table";
 import Add from "./Add";
 import Edit from "./Edit";
-
-// import { employeesData } from "../../data";
+import EmployeeDetails from "../EmployeeDetails";
 
 const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
-  // eslint-disable-next-line no-undef
-  const [employees, setEmployees] = useState();
+  const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleRowClick = (employee) => {
+    navigate(`/employee/${employee.id}`, { state: employee });
+  };
   const getGuests = async () => {
     const querySnapshot = await getDocs(collection(db, "guests"));
     const employees = querySnapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
-
     setEmployees(employees);
   };
 
@@ -33,7 +35,6 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
 
   const handleEdit = (id) => {
     const [employee] = employees.filter((employee) => employee.id === id);
-
     setSelectedEmployee(employee);
     setIsEditing(true);
   };
@@ -49,9 +50,7 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
     }).then((result) => {
       if (result.value) {
         const [employee] = employees.filter((employee) => employee.id === id);
-
         deleteDoc(doc(db, "guests", id));
-
         Swal.fire({
           icon: "success",
           title: "Deleted!",
@@ -59,7 +58,6 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
           showConfirmButton: false,
           timer: 1500,
         });
-
         const employeesCopy = employees.filter(
           (employee) => employee.id !== id
         );
@@ -69,8 +67,8 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
   };
 
   return (
-    <div className="container">
-      {!isAdding && !isEditing && (
+    <div className="" style={{ margin: "20px" }}>
+      {!isAdding && !isEditing && selectedEmployee === null && (
         <>
           <Header
             setIsAdding={setIsAdding}
@@ -78,13 +76,17 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
             userEmail={userEmail}
             userName={userName}
           />
-          <Table
-            employees={employees}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-          />
+          {employees.length > 0 && (
+            <Table
+              employees={employees}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+              handleRowClick={handleRowClick}
+            />
+          )}
         </>
       )}
+      {selectedEmployee && <EmployeeDetails employee={selectedEmployee} />}
       {isAdding && (
         <Add
           employees={employees}

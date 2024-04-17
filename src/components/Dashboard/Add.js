@@ -4,8 +4,9 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../config/firestore";
 
 const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [name, setName] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
+  const [idNumber, setIdNumber] = useState("");
   const [email, setEmail] = useState("");
   const [cost, setCost] = useState("");
   const [roomNo, setRoomNo] = useState("");
@@ -17,8 +18,9 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
     e.preventDefault();
 
     if (
-      !firstName ||
-      !lastName ||
+      !name ||
+      !phoneNo ||
+      !idNumber ||
       !email ||
       !cost ||
       !roomNo ||
@@ -35,8 +37,9 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
     }
 
     const newEmployee = {
-      firstName,
-      lastName,
+      name,
+      phoneNo,
+      idNumber,
       email,
       cost,
       roomNo,
@@ -64,7 +67,7 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
     Swal.fire({
       icon: "success",
       title: "Added!",
-      text: `${firstName} ${lastName}'s data has been Added.`,
+      text: `${name}'s data has been Added.`,
       showConfirmButton: false,
       timer: 1500,
     });
@@ -76,19 +79,19 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
         <h1>Add Guest</h1>
         <label htmlFor="firstName">First Name</label>
         <input
-          id="firstName"
+          id="name"
           type="text"
-          name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName">Phone No</label>
         <input
-          id="lastName"
+          id="phoneNo"
           type="text"
-          name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          name="phoneNo"
+          value={phoneNo}
+          onChange={(e) => setPhoneNo(e.target.value)}
         />
         <label htmlFor="email">Email</label>
         <input
@@ -97,6 +100,15 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label htmlFor="idNumber">Id Number</label>
+        <input
+          id="idNumber"
+          type="text"
+          name="idNumber"
+          value={idNumber}
+          onChange={(e) => setIdNumber(e.target.value)}
         />
         <label htmlFor="salary">Cost ($)</label>
         <input

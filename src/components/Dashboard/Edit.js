@@ -12,8 +12,9 @@ const Edit = ({
 }) => {
   const id = selectedEmployee.id;
 
-  const [firstName, setFirstName] = useState(selectedEmployee.firstName);
-  const [lastName, setLastName] = useState(selectedEmployee.lastName);
+  const [name, setName] = useState(selectedEmployee.name);
+  const [phoneNo, setPhoneNo] = useState(selectedEmployee.phoneNo);
+  const [idNumber, setIdNumber] = useState(selectedEmployee.idNumber);
   const [email, setEmail] = useState(selectedEmployee.email);
   const [cost, setCost] = useState(selectedEmployee.cost);
   const [roomNo, setRoomNo] = useState(selectedEmployee.roomNo);
@@ -25,8 +26,9 @@ const Edit = ({
     e.preventDefault();
 
     if (
-      !firstName ||
-      !lastName ||
+      !name ||
+      !phoneNo ||
+      !idNumber ||
       !email ||
       !cost ||
       !roomNo ||
@@ -44,8 +46,9 @@ const Edit = ({
 
     const employee = {
       id,
-      firstName,
-      lastName,
+      name,
+      phoneNo,
+      idNumber,
       email,
       cost,
       roomNo,
@@ -65,7 +68,7 @@ const Edit = ({
     Swal.fire({
       icon: "success",
       title: "Updated!",
-      text: `${employee.firstName} ${employee.lastName}'s data has been updated.`,
+      text: `${employee.name}'s data has been updated.`,
       showConfirmButton: false,
       timer: 1500,
     });
@@ -80,16 +83,16 @@ const Edit = ({
           id="firstName"
           type="text"
           name="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <label htmlFor="lastName">Last Name</label>
         <input
           id="lastName"
           type="text"
           name="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
+          value={name}
+          onChange={(e) => setPhoneNo(e.target.value)}
         />
         <label htmlFor="email">Email</label>
         <input
@@ -98,6 +101,14 @@ const Edit = ({
           name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <label htmlFor="idNumber">Id Number</label>
+        <input
+          id="idNumber"
+          type=""
+          name="idNumber"
+          value={name}
+          onChange={(e) => setIdNumber(e.target.value)}
         />
         <label htmlFor="salary">Cost ($)</label>
         <input

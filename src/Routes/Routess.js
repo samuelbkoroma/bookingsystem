@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "../components/Login";
 import Register from "../components/Register/Index";
 import Dashboard from "../components/Dashboard";
 import Logout from "../components/Logout";
+import EmployeeDetails from "../components/EmployeeDetails";
+
 
 const Routess = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,6 +48,7 @@ const Routess = () => {
         />
 
         <Route path="/logout" element={<Logout />} />
+        <Route path="/employee/:id" element={<EmployeeDetails />} />
       </Routes>
     </Router>
   );
