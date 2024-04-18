@@ -13,7 +13,7 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
   const [guestNo, setGuestNo] = useState("");
   const [entryDate, setEntryDate] = useState("");
   const [leaveDate, setLeaveDate] = useState("");
-
+  const [status, setStatus] = useState("Active");
   const handleAdd = async (e) => {
     e.preventDefault();
 
@@ -26,7 +26,8 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
       !roomNo ||
       !guestNo ||
       !entryDate ||
-      !leaveDate
+      !leaveDate ||
+      !status
     ) {
       return Swal.fire({
         icon: "error",
@@ -37,6 +38,7 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
     }
 
     const newEmployee = {
+      id: Date.now().toString(), // Generate a unique ID using the current timestamp
       name,
       phoneNo,
       idNumber,
@@ -46,31 +48,27 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
       guestNo,
       entryDate,
       leaveDate,
+      status,
     };
 
-    employees.push(newEmployee);
+    const newEmployees = [...employees, newEmployee];
 
     try {
-      await addDoc(collection(db, "guests"), {
-        ...newEmployee,
+      await addDoc(collection(db, "guests"), newEmployee);
+      setEmployees(newEmployees);
+      setIsAdding(false);
+      getGuests();
+
+      Swal.fire({
+        icon: "success",
+        title: "Added!",
+        text: `${name}'s data has been Added.`,
+        showConfirmButton: false,
+        timer: 1500,
       });
     } catch (error) {
       console.log(error);
     }
-
-    // Add a new document with a generated id.
-
-    setEmployees(employees);
-    setIsAdding(false);
-    getGuests();
-
-    Swal.fire({
-      icon: "success",
-      title: "Added!",
-      text: `${name}'s data has been Added.`,
-      showConfirmButton: false,
-      timer: 1500,
-    });
   };
 
   return (
@@ -136,6 +134,16 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
           value={guestNo}
           onChange={(e) => setGuestNo(e.target.value)}
         />
+        <label htmlFor="status">Status</label>
+        <select
+          id="status"
+          name="status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
         <label htmlFor="date">Entry Date</label>
         <input
           id="entryDate"

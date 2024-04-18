@@ -6,7 +6,8 @@ import { db } from "../../config/firestore";
 const Edit = ({
   employees,
   selectedEmployee,
-  setEmployees,
+
+  updateEmployees,
   setIsEditing,
   getGuests,
 }) => {
@@ -21,6 +22,7 @@ const Edit = ({
   const [guestNo, setGuestNo] = useState(selectedEmployee.guestNo);
   const [entryDate, setEntryDate] = useState(selectedEmployee.entryDate);
   const [leaveDate, setLeaveDate] = useState(selectedEmployee.leaveDate);
+  const [status, setStatus] = useState(selectedEmployee.status);
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -34,7 +36,8 @@ const Edit = ({
       !roomNo ||
       !guestNo ||
       !entryDate ||
-      !leaveDate
+      !leaveDate ||
+      !status
     ) {
       return Swal.fire({
         icon: "error",
@@ -55,15 +58,16 @@ const Edit = ({
       guestNo,
       entryDate,
       leaveDate,
+      status,
     };
 
     await setDoc(doc(db, "guests", id), {
       ...employee,
     });
 
-    setEmployees(employees);
     setIsEditing(false);
     getGuests();
+    updateEmployees(employees);
 
     Swal.fire({
       icon: "success",
@@ -78,7 +82,7 @@ const Edit = ({
     <div className="small-container">
       <form onSubmit={handleUpdate}>
         <h1>Edit Guest</h1>
-        <label htmlFor="firstName">First Name</label>
+        <label htmlFor="firstName">Name</label>
         <input
           id="firstName"
           type="text"
@@ -86,12 +90,12 @@ const Edit = ({
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="lastName">Last Name</label>
+        <label htmlFor="lastName">Phone</label>
         <input
           id="lastName"
           type="text"
           name="lastName"
-          value={name}
+          value={phoneNo}
           onChange={(e) => setPhoneNo(e.target.value)}
         />
         <label htmlFor="email">Email</label>
@@ -105,9 +109,9 @@ const Edit = ({
         <label htmlFor="idNumber">Id Number</label>
         <input
           id="idNumber"
-          type=""
+          type="number"
           name="idNumber"
-          value={name}
+          value={idNumber}
           onChange={(e) => setIdNumber(e.target.value)}
         />
         <label htmlFor="salary">Cost ($)</label>
@@ -136,6 +140,17 @@ const Edit = ({
           value={guestNo}
           onChange={(e) => setGuestNo(e.target.value)}
         />
+
+        <label htmlFor="status">Status</label>
+        <select
+          id="status"
+          name="status"
+          value={status}
+          onChange={(e) => setStatus(e.target.value)}
+        >
+          <option value="Active">Active</option>
+          <option value="Inactive">Inactive</option>
+        </select>
         <label htmlFor="date">Entry Date</label>
         <input
           id="entryDate"

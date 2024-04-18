@@ -2,6 +2,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -38,14 +39,25 @@ const Logout = () => {
   };
 
   return (
-    <button
-      style={{ marginLeft: "12px" }}
-      className="muted-button"
-      onClick={handleLogout}
-    >
-      Logout
-    </button>
+    <Div>
+      <button className="muted-button" onClick={handleLogout}>
+        Logout
+      </button>
+    </Div>
   );
 };
 
 export default Logout;
+
+const Div = styled.div`
+  .muted-button {
+    padding: 20px;
+    background-color: #dedcff;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    color: #433bff;
+  }
+`;

@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useReactToPrint } from "react-to-print";
 import jsPDF from "jspdf";
+import styled from "styled-components";
 
 const EmployeeDetails = () => {
   const navigate = useNavigate();
@@ -31,28 +32,94 @@ const EmployeeDetails = () => {
   };
 
   return (
-    <div>
-      <button onClick={handleBackClick}>Back</button>
-      <button onClick={handlePrint}>Print</button>
-      <button onClick={downloadPDF}>Download PDF</button>
-      <div ref={componentRef}>
-        <h2>Employee Details</h2>
-        {employee && (
-          <>
-            <p>Name: {employee.name}</p>
-            <p>Phone No: {employee.phoneNo}</p>
-            <p>ID Number: {employee.idNumber}</p>
-            <p>Email: {employee.email}</p>
-            <p>Cost: ${employee.cost}</p>
-            <p>Room Number: {employee.roomNo}</p>
-            <p>Number of Guests: {employee.guestNo}</p>
-            <p>Entry Date: {employee.entryDate}</p>
-            <p>Leave Date: {employee.leaveDate}</p>
-          </>
-        )}
+    <Div>
+      <div>
+        <div className="buttons-container">
+          <button onClick={handleBackClick}>Back</button>
+          <button onClick={handlePrint}>Print</button>
+          <button onClick={downloadPDF}>Download PDF</button>
+        </div>
+        <div ref={componentRef}>
+          <h2 className="guesthead">Guest Details</h2>
+          {employee && (
+            <>
+              <p className="titlle">
+                Name : <span className="span">{employee.name} </span>{" "}
+              </p>
+              <p className="titlle">
+                Phone No : <span className="span">{employee.phoneNo}</span>{" "}
+              </p>
+              <p className="titlle">
+                ID Number :<span className="span"> {employee.idNumber}</span>{" "}
+              </p>
+              <p className="titlle">
+                Email : <span className="span"> {employee.email} </span>{" "}
+              </p>
+              <p className="titlle">
+                Cost : <span className="span"> ${employee.cost}</span>{" "}
+              </p>
+              <p className="titlle">
+                Room Number : <span className="span"> {employee.roomNo} </span>{" "}
+              </p>
+              <p className="titlle">
+                Number of Guests :{" "}
+                <span className="span">{employee.guestNo} </span>{" "}
+              </p>
+              <p className="titlle">
+                Status : <span className="span"> {employee.status}</span>{" "}
+              </p>
+              <p className="titlle">
+                Entry Date : <span className="span"> {employee.entryDate}</span>{" "}
+              </p>
+              <p className="titlle">
+                Leave Date : <span className="span"> {employee.leaveDate}</span>{" "}
+              </p>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+    </Div>
   );
 };
 
 export default EmployeeDetails;
+
+const Div = styled.div`
+  margin: 20px;
+
+  .buttons-container {
+    display: flex;
+    gap: 20px;
+  }
+
+  .buttons-container button {
+    background: #2f27ce;
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .guesthead {
+    color: #050315;
+    text-transform: Capitalize;
+    font-size: 50px;
+    font-family: "Poppins", sans-serif;
+  }
+
+  .span {
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    color: #050315;
+    text-transform: Capitalize;
+    margin-left: 15px;
+  }
+
+  .titlle {
+    font-size: 18px;
+    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    text-transform: Capitalize;
+    margin-left: 15px;
+  }
+`;

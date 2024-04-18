@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firestore";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Table from "./Table";
 import Add from "./Add";
@@ -15,11 +15,16 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
   const [isAdding, setIsAdding] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleRowClick = (employee) => {
-    navigate(`/employee/${employee.id}`, { state: employee });
+  // const handleRowClick = (employee) => {
+  //   navigate(`/employee/${employee.id}`, { state: employee });
+  // };
+
+  const updateEmployees = (updatedEmployees) => {
+    setEmployees(updatedEmployees);
   };
+
   const getGuests = async () => {
     const querySnapshot = await getDocs(collection(db, "guests"));
     const employees = querySnapshot.docs.map((doc) => ({
@@ -67,7 +72,7 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
   };
 
   return (
-    <div className="" style={{ margin: "20px" }}>
+    <div>
       {!isAdding && !isEditing && selectedEmployee === null && (
         <>
           <Header
@@ -81,12 +86,13 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
               employees={employees}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
-              handleRowClick={handleRowClick}
+              /* handleRowClick={handleRowClick} */
             />
           )}
+          {selectedEmployee && <EmployeeDetails employee={selectedEmployee} />}
         </>
       )}
-      {selectedEmployee && <EmployeeDetails employee={selectedEmployee} />}
+
       {isAdding && (
         <Add
           employees={employees}
@@ -102,6 +108,7 @@ const Dashboard = ({ setIsAuthenticated, userEmail, userName }) => {
           setEmployees={setEmployees}
           setIsEditing={setIsEditing}
           getGuests={getGuests}
+          updateEmployees={updateEmployees}
         />
       )}
     </div>

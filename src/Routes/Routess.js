@@ -6,7 +6,7 @@ import Register from "../components/Register/Index";
 import Dashboard from "../components/Dashboard";
 import Logout from "../components/Logout";
 import EmployeeDetails from "../components/EmployeeDetails";
-
+import Edit from "../components/Dashboard/Edit";
 
 const Routess = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -48,6 +48,7 @@ const Routess = () => {
         />
 
         <Route path="/logout" element={<Logout />} />
+        <Route path="/edit/:id" element={<Edit />} />
         <Route path="/employee/:id" element={<EmployeeDetails />} />
       </Routes>
     </Router>
