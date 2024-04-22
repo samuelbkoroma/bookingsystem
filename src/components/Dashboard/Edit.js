@@ -6,7 +6,6 @@ import { db } from "../../config/firestore";
 const Edit = ({
   employees,
   selectedEmployee,
-
   updateEmployees,
   setIsEditing,
   getGuests,

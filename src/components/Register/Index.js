@@ -66,9 +66,14 @@ const Register = ({ setIsAuthenticated, setUserEmail, setUserName }) => {
   };
 
   return (
-    <div className="small-container">
+    <div className="small-containers">
+      <div>
+        <img src="login.png" alt="login" className="login-img" />
+      </div>
       <form onSubmit={handleRegister} className="form">
-        <h1>Admin Register</h1>
+        <img src="bookinglogo.jpg" alt="" className="bklogo" />
+        <span className="ht-text-head">Berakah Hotel</span>
+        <p className="ht-text">Welcome to Berakah Hotel's Admin Portal</p>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -92,7 +97,7 @@ const Register = ({ setIsAuthenticated, setUserEmail, setUserName }) => {
           id="password"
           type="password"
           name="password"
-          placeholder="qwerty"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -110,7 +115,6 @@ const Register = ({ setIsAuthenticated, setUserEmail, setUserName }) => {
             Login
           </Link>
         </div>
-        <button className="google-btn">Continue with google</button>
       </form>
     </div>
   );

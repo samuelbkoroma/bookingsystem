@@ -84,6 +84,7 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
       width: 180,
       headerClassName: "header",
     },
+
     {
       field: "actions",
       headerName: "Actions",
@@ -135,7 +136,7 @@ const Table = ({ employees, handleEdit, handleDelete }) => {
 
   return (
     <Div>
-      <div style={{ height: 500, width: "100%" }}>
+      <div style={{ height: 500, width: "100%", border: "none" }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -156,12 +157,16 @@ const Div = styled.div`
     font-weight: 800;
     font-family: "Poppins", sans-serif;
     color: #050315;
+    border: 1px solid grey;
+    border-radius: 50px;
+    text-align: center;
+    margin-right: 10px;
+    margin-bottom: 10px;
   }
 
   .custom-row {
     font-size: 15px;
     font-weight: 500;
     font-family: "Poppins", san-serif;
-    
   }
 `;

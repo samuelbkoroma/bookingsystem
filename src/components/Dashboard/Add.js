@@ -161,6 +161,15 @@ const Add = ({ employees, setEmployees, setIsAdding, getGuests }) => {
           value={leaveDate}
           onChange={(e) => setLeaveDate(e.target.value)}
         />
+
+        <label htmlFor="date">Actual Leave Date</label>
+        <input
+          id="leaveDate"
+          type="date"
+          name="leaveDate"
+          value={leaveDate}
+          onChange={(e) => setLeaveDate(e.target.value)}
+        />
         <div style={{ marginTop: "30px" }}>
           <input type="submit" value="Add" />
           <input

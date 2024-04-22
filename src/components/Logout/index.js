@@ -59,5 +59,6 @@ const Div = styled.div`
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     color: #433bff;
+    border-radius: 50px;
   }
 `;

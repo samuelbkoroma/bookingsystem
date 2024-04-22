@@ -54,9 +54,15 @@ const Login = ({ setIsAuthenticated, setUserEmail }) => {
   };
 
   return (
-    <div className="small-container">
+    <div className="small-containers">
+      <div>
+        <img src="login.png" alt="login" className="login-img" />
+      </div>
+
       <form onSubmit={handleLogin} className="form">
-        <h1>Admin Login</h1>
+        <img src="bookinglogo.jpg" alt="" className="bklogo" />
+        <span className="ht-text-head">Berakah Hotel</span>
+        <p className="ht-text">Welcome to Berakah Hotel's Admin Portal</p>
         <label htmlFor="email">Email</label>
         <input
           id="email"
@@ -71,7 +77,7 @@ const Login = ({ setIsAuthenticated, setUserEmail }) => {
           id="password"
           type="password"
           name="password"
-          placeholder="qwerty"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

@@ -58,21 +58,27 @@ const Header = ({ setIsAdding, setIsAuthenticated, userEmail }) => {
 
   return (
     <Div>
-      <span className="title">BeraKah Booking System</span>
+      <div className="head-sec-1">
+        <img
+          src="bookinglogo.jpg"
+          alt=""
+          width={100}
+          height={100}
+          className="logo"
+        />
+        <span className="title">BeraKah Hotel</span>
+        <div className="space">
+          <span className="logged-in-user">Logged in as: {userEmail}</span>
+          <Logout setIsAuthenticated={setIsAuthenticated} />
+        </div>
+      </div>
+
       <div className="items">
         <header>
-          <img
-            src="bookinglogo.jpg"
-            alt=""
-            width={150}
-            height={150}
-            className="logo"
-          />
           <div
             style={{ marginTop: "30px", marginBottom: "18px" }}
             className=" buttons-det"
           >
-            <div className="logged-in-user">Logged in as: {userEmail}</div>
             <div className="the-buttons">
               <button
                 onClick={() => setIsAdding(true)}
@@ -80,7 +86,6 @@ const Header = ({ setIsAdding, setIsAuthenticated, userEmail }) => {
               >
                 Add Guest
               </button>
-              <Logout setIsAuthenticated={setIsAuthenticated} />
             </div>
           </div>
         </header>
@@ -113,6 +118,7 @@ export default Header;
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 10px;
   .items {
     display: flex;
     justify-content: space-between;
@@ -125,7 +131,7 @@ const Div = styled.div`
     text-align: center;
   }
   .divs div {
-    border-radius: 10px;
+    border-radius: 50px;
     padding: 10px;
     font-size: 20px;
     width: 200px;
@@ -133,7 +139,7 @@ const Div = styled.div`
     box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
-    background: #2f27ce;
+    background: #f2f2f2;
   }
 
   .title {
@@ -158,13 +164,13 @@ const Div = styled.div`
     font-size: 20px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    color: #fbfbfe;
+    color: #333;
   }
   .p2 {
     font-size: 20px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
-    color: #fbfbfe;
+    color: #333;
   }
 
   .buttons-det {
@@ -187,10 +193,26 @@ const Div = styled.div`
     font-size: 17px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+    border-radius: 50px;
   }
 
   .the-buttons {
     display: flex;
     gap: 8px;
+  }
+  .head-sec-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+
+  .space {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-end;
+    padding: 10px;
   }
 `;
