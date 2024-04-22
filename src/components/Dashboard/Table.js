@@ -153,12 +153,11 @@ export default Table;
 
 const Div = styled.div`
   .header {
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 800;
     font-family: "Poppins", sans-serif;
     color: #050315;
     border: 1px solid grey;
-    border-radius: 50px;
     text-align: center;
     margin-right: 10px;
     margin-bottom: 10px;

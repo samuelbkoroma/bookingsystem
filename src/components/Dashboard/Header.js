@@ -92,20 +92,20 @@ const Header = ({ setIsAdding, setIsAuthenticated, userEmail }) => {
 
         <div className="divs">
           <div>
-            <p className="p1">Total Guest</p>
-            <p className="p2">{totalGuest}</p>
+            <span className="p1">Total Guest</span>
+            <span className="p2">{totalGuest}</span>
           </div>
           <div>
-            <p className="p1">Total Active Guest</p>
-            <p className="p2">{activeGuests}</p>
+            <span className="p1">Total Active Guest</span>
+            <span className="p2">{activeGuests}</span>
           </div>
           <div>
-            <p className="p1">Total Inactive Guest</p>
-            <p className="p2">{inactiveGuest}</p>
+            <span className="p1">Total Inactive Guest</span>
+            <span className="p2">{inactiveGuest}</span>
           </div>
           <div>
-            <p className="p1">Total Income</p>
-            <p className="p2">${totalCost}</p>
+            <span className="p1">Total Income</span>
+            <span className="p2">${totalCost}</span>
           </div>
         </div>
       </div>
@@ -131,11 +131,16 @@ const Div = styled.div`
     text-align: center;
   }
   .divs div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     border-radius: 50px;
+    gap: 10px;
     padding: 10px;
     font-size: 20px;
-    width: 200px;
-    height: 150px;
+    width: 210px;
+    height: 100px;
     box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
     -webkit-box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 2px 6px 13px -1px rgba(0, 0, 0, 0.75);
@@ -161,13 +166,13 @@ const Div = styled.div`
   }
 
   .p1 {
-    font-size: 20px;
+    font-size: 17px;
     font-family: "Poppins", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     color: #333;
   }
   .p2 {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     color: #333;
